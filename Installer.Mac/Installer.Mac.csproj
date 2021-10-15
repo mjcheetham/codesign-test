@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App\App.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyPayload" AfterTargets="Build">
+    <Message Importance="high" Text="cp -R . payload\" />
+  </Target>
+
+  <Target Name="SignPayload" AfterTargets="CopyPayload">
+    <Message Importance="high" Text="codesign payload\* CERT=$(CODESIGN_CERT)" />
+  </Target>
+
+  <Target Name="BuildInstaller" AfterTargets="CopyPayload">
+    <Message Importance="high" Text="pkgbuild ; productbuild" />
+  </Target>
+
+  <Target Name="SignInstaller" AfterTargets="BuildInstaller">
+    <Message Importance="high" Text="codesign setup.pkg CERT=$(CODESIGN_CERT)" />
+    <Message Importance="high" Text="notarize setup.pkg ID=$(NOTARIZE_APPLEID)" />
+  </Target>
+
+</Project>

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tools.InnoSetup" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App\App.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyPayload" AfterTargets="Build">
+    <Message Importance="high" Text="copy -R . payload\" />
+  </Target>
+
+  <Target Name="SignPayload" AfterTargets="CopyPayload">
+    <Message Importance="high" Text="signtool CERT=$(CODESIGN_CERT) payload\*" />
+  </Target>
+
+  <Target Name="BuildInstaller" AfterTargets="SignPayload">
+    <Message Importance="high" Text="$(PkgTools_InnoSetup)\tools\ISCC.exe setup.iss" />
+  </Target>
+
+  <Target Name="SignInstaller" AfterTargets="BuildInstaller">
+    <Message Importance="high" Text="signtool CERT=$(CODESIGN_CERT) installer.exe" />
+  </Target>
+
+</Project>
