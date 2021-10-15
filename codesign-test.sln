@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{E7D3E349-428B-4E42-8343-9C264A764909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer.Windows", "Installer.Windows\Installer.Windows.csproj", "{6501DAD7-E222-4AAD-9609-D35BD304A55A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer.Mac", "Installer.Mac\Installer.Mac.csproj", "{3A229CDD-DB34-4E2C-BBF1-253D3F892259}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		WindowsDebug|Any CPU = WindowsDebug|Any CPU
+		WindowsRelease|Any CPU = WindowsRelease|Any CPU
+		MacDebug|Any CPU = MacDebug|Any CPU
+		MacRelease|Any CPU = MacRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7D3E349-428B-4E42-8343-9C264A764909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.WindowsDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.WindowsDebug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.WindowsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.WindowsRelease|Any CPU.Build.0 = Release|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.MacDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.MacDebug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.MacRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D3E349-428B-4E42-8343-9C264A764909}.MacRelease|Any CPU.Build.0 = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.WindowsDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.WindowsDebug|Any CPU.Build.0 = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.WindowsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.WindowsRelease|Any CPU.Build.0 = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.MacDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.MacDebug|Any CPU.Build.0 = Debug|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.MacRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{46627721-5A2F-4ADA-8F61-D6BBFDE5C480}.MacRelease|Any CPU.Build.0 = Release|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.WindowsDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.WindowsDebug|Any CPU.Build.0 = Debug|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.WindowsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.WindowsRelease|Any CPU.Build.0 = Release|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.MacDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6501DAD7-E222-4AAD-9609-D35BD304A55A}.MacRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.WindowsDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.WindowsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.MacDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.MacDebug|Any CPU.Build.0 = Debug|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.MacRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{3A229CDD-DB34-4E2C-BBF1-253D3F892259}.MacRelease|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

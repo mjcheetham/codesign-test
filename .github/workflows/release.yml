@@ -1,0 +1,70 @@
+name: Release
+on:
+  push:
+    branches:
+      - release
+
+# Secrets used:
+#  AZURE_CREDENTIALS
+#  AZURE_KEYVAULT
+#  CODESIGN_NAME_WINDOWS
+#  CODESIGN_THUMBPRINT_WINDOWS
+#  CODESIGN_NAME_OSX
+#  CODESIGN_THUMBPRINT_OSX
+#  APPLE_ID
+#  APPLE_PASSWORD
+
+jobs:
+  win:
+    runs-on: windows-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Install certificate
+        shell: pwsh
+        env:
+          AZ_KV: ${{ secrets.AZURE_KEYVAULT }}
+          AZ_CERT: ${{ secrets.CODESIGN_NAME_WINDOWS }}
+        run: |
+          az keyvault secret download --vault-name "$env:AZ_KV" --name "$env:AZ_CERT" --file cert.pfx
+          certutil -f -importpfx cert.pfx
+          Remove-Item cert.pfx
+      - name: Build
+        env:
+          CODESIGN_CERT: ${{ secrets.CODESIGN_THUMBPRINT_WINDOWS }}
+        run: dotnet build -c WindowsRelease
+
+  osx:
+    runs-on: macos-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Install certificate
+        shell: bash
+        env:
+          AZ_KV: ${{ secrets.AZURE_KEYVAULT }}
+          AZ_CERT: ${{ secrets.CODESIGN_NAME_OSX }}
+        run: |
+          az keyvault secret download --vault-name "$AZ_KV" --name "$AZ_CERT" --encoding base64 --file cert.pfx
+          security import cert.pfx -k ~/Library/Keychains/login.keychain -Ax -P ""
+          rm -f cert.pfx
+      - name: Build
+        env:
+            CODESIGN_CERT: ${{ secrets.CODESIGN_THUMBPRINT_OSX }}
+            NOTARIZE_APPLEID: ${{ secrets.APPLE_ID }}
+            NOTARIZE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+        run: dotnet build -c MacRelease
