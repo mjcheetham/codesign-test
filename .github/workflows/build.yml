@@ -1,0 +1,53 @@
+name: "Build and Sign"
+
+on:
+    workflow_dispatch:
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - name: "Build"
+        run: dotnet publish app -c Release
+      - name: "Upload artifacts"
+        uses: actions/upload-artifact@v2
+        with:
+            name: "unsigned"
+            path: "app/bin/Release/net7.0/publish"
+  sign:
+    name: "Sign"
+    needs: build
+    runs-on: windows-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - name: "Download artifacts"
+        uses: actions/download-artifact@v2
+        with:
+            name: "unsigned"
+            path: "unsigned"
+      - name: "Authenticate to Azure"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: "Download certificate"
+        run: |
+          az keyvault secret download --vault-name ${{ secrets.KEYVAULT_NAME }} --name ${{ secrets.CERTIFICATE_NAME }} --file cert.pfx
+      - name: "Install certificate"
+        run: |
+          certutil -f -importpfx cert.pfx
+      - name: "Sign"
+        run: |
+          echo "signtool ..."
+      - name: "Upload artifacts"
+        uses: actions/upload-artifact@v2
+        with:
+            name: "unsigned"
+            path: "signed"
